@@ -18,7 +18,7 @@ Load all three datasets into your CARTO account.
 
 ```SQL
 SELECT count(*)
-FROM andyepenn.indego_trips_2019_q2
+FROM "seren-sx".indego_trips_2019_q2
 ```
 
 **Result:** 206354
@@ -28,10 +28,11 @@ FROM andyepenn.indego_trips_2019_q2
 Using only the table from Q2 2020 and the number calculated in the previous question, find the percent change of number of trips in Q2 2020 as compared to 2019. Remember you can do calculations in the select clause.
 
 ```SQL
--- Enter your SQL query here
+SELECT  CONCAT( ROUND (((count(*)-206354.00)/ 206354.00)*100,2),'%')
+FROM "seren-sx".indego_trips_2020_q2
 ```
 
-**Result:**
+**Result:** -9.58%
 
 __Bonus: If you want to get fancier here, you can cast the result to a string and concatenate a `'%'` to the end. For example, `(10 + 3.2)::text || '%' AS perc_change`. This uses the type casting (number to string) and string concatenation operator (`||`, double pipes) that's essentially a `+` for strings.__
 
@@ -40,20 +41,22 @@ __Bonus: If you want to get fancier here, you can cast the result to a string an
 **Average duration of a trip for 2019.**
 
 ```SQL
--- Enter your SQL query here
+SELECT AVG (duration)
+FROM "seren-sx".indego_trips_2019_q2
 ```
-**Result:**
+**Result:** 23.674069802378437
 
 **Average duration of a trip for 2020.**
 
 ```SQL
--- Enter your SQL query here
+SELECT AVG (duration)
+FROM "seren-sx".indego_trips_2020_q2
 ```
-**Result:**
+**Result:** 39.23600913251798
 
 **What do you notice about the difference in trip lengths? Give a few explanations for why there could be a difference here.**
 
-**Answer:**
+**Answer:** The lengths of the trip has nearly doubled, and one of the possible reasons for it is that the number of bikes has decreased, and people may choose to stay in the trip in order to avoid the difficulty of finding a new bike on the return journey.
 
 ## 4. What is the longest duration trip?
 
